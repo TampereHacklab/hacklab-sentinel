@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  div(class="container")
+    div(class="alert alert-danger")
+      strong Login failed 
+      |Try again
+    h2 Log in
+    form(action="/login/local-login", method="post", role="form")
+      div(class="form-group has-error has-feedback")
+        label(for="username") Username:
+        input(name="username", id="username", placeholder="", class="form-control")
+        span(class="glyphicon glyphicon-remove form-control-feedback")
+      div(class="form-group")
+        label(for="password") Password:
+        input(name="password", id="password", type="password", placeholder="", class="form-control")
+      button(type="submit", class="btn btn-default") Login
+  br
+  br
+  div(class="container")
+    h2 Register new user
+    form(action="/login/register", method="post", role="form")
+      div(class="form-group")
+        label(for="username") Username:
+        input(name="username", id="username", placeholder="Choose you unique password, ie. email address", class="form-control")
+      div(class="form-group")
+        label(for="email") Email address:
+        input(name="email", id="email", placeholder="Type your email address", class="form-control")
+      div(class="form-group")
+        label(for="password") Password:
+        input(name="password", id="password", type="password", placeholder="Choose complex enough password", class="form-control")
+      div(class="form-group")
+        label(for="password-repeat") Repeat password:
+        input(name="password-repeat", id="password-repeat", type="password", placeholder="Repeat password", class="form-control")
+      button(type="submit", class="btn btn-default") Submit

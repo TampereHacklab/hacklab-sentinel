@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title= title
+    script(src="https://code.jquery.com/jquery-2.2.0.min.js")
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js")
+    link(rel="stylesheet", href="/stylesheets/style.css")
+    script(src="/javascripts/main.js")
+  body
+    div(class="main-menu")
+      ul(class="list-inline")
+        li
+          a(href="/") Index
+        li
+          a(href="users") Users
+        li
+          a(href="cpu") CPU
+        li
+          a(href="memory") Memory
+        li
+          if user
+            a(href="login/logout") Logout
+          else
+            a(href="login") Login
+        if user
+          h1(style="float: right; margin-right: 10px;") Welcome to Sosaria, #{user.username}!
+        else
+          h1(style="float: right; margin-right: 10px;") Welcome to Sosaria, stranger!
+    block content

@@ -1,6 +1,6 @@
 # README #
 
-When cloning repository, first run
+After cloning repository, run
 
 ```
 npm update

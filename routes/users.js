@@ -27,14 +27,14 @@ router.get("/", function(req, res) {
         user: req.user
     };
     models.User.findAll({
-        attributes: ["username", "email", "lastlogin", "createdAt"]
+        attributes: ["username", "email", "lastLogin", "createdAt"]
     }).then(function(users) {
         for(var i = 0; i < users.length; i++) {
             var user = users[i];
             viewbag.users.push({
                 username: user.username,
                 email: user.email,
-                lastlogin: moment(user.lastlogin).format("DD.MM.YYYY HH:mm"),
+                lastlogin: user.lastLogin != null ? moment.duration(moment(new Date()).diff(moment(user.lastLogin))).humanize() : "n/a",
                 created: moment(user.createdAt).format("DD.MM.YYYY HH:mm")
             });
         }

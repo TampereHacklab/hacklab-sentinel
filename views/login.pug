@@ -3,13 +3,13 @@ extends layout
 block content
   div(class="container")
     div(class="alert alert-danger")
-      strong Login failed 
+      strong Login failed
       |Try again
     h2 Log in
     form(action="/login/local-login", method="post", role="form")
       div(class="form-group has-error has-feedback")
         label(for="username") Username:
-        input(name="username", id="username", placeholder="", class="form-control")
+        input(name="username", id="username", placeholder="", class="form-control", autofocus)
         span(class="glyphicon glyphicon-remove form-control-feedback")
       div(class="form-group")
         label(for="password") Password:

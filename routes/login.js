@@ -9,8 +9,22 @@ router.get("/", function(req, res, next) {
 });
 
 router.post('/local-login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login' }));
+  passport.authenticate('local'),
+  function(req, res) {
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+    models.User.update({
+        lastLogin: new Date()
+    }, {
+        where: {
+            id: req.user.id
+        }
+    }).then(function(user) {
+        res.redirect('/');
+    });
+
+  });
+  //passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
 
 router.get("/logout", function(req, res) {
   console.log("log out");

@@ -23,7 +23,15 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
-// uncomment after placing your favicon in /public
+//serve client side js/css/fonts
+app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js")); // redirect bootstrap JS
+app.use("/js", express.static(__dirname + "/node_modules/jquery/dist")); // redirect JS jQuery
+app.use("/js", express.static(__dirname + "/public/javascripts")); // redirect JS jQuery
+app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css")); // redirect CSS bootstrap
+app.use("/css", express.static(__dirname + "/public/stylesheets")); // redirect CSS bootstrap
+app.use("/fonts", express.static(__dirname + "/node_modules/bootstrap/dist/fonts"));
+
+//uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 app.use(logger("dev"));
 app.use(bodyParser.json());

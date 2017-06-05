@@ -2,25 +2,31 @@ doctype html
 html
   head
     title= title
-    script(src="https://code.jquery.com/jquery-2.2.0.min.js")
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")
-    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js")
-    link(rel="stylesheet", href="/stylesheets/style.css")
-    script(src="/javascripts/main.js")
+    script(src="/js/jquery.min.js")
+    link(rel="stylesheet", href="/css/bootstrap.min.css")
+    script(src="/js/bootstrap.min.js")
+    link(rel="stylesheet", href="/css/style.css")
+    script(src="/js/main.js")
   body
-    div(class="main-menu")
-      ul(class="list-inline")
-        li
-          a(href="/") Index
-        li
-          a(href="users") Users
-        li
-          if user
-            a(href="login/logout") Logout
-          else
-            a(href="login") Login
-        if user
-          h1(style="float: right; margin-right: 10px;") Welcome to Sosaria, #{user.username}!
-        else
-          h1(style="float: right; margin-right: 10px;") Welcome to Sosaria, stranger!
+    nav(class="navbar")
+        div(class="container-fluid")
+            div(class="navbar-header")
+                a(class="navbar-brand" href="/") hacklab sentinel
+            ul(class="nav navbar-nav")
+                li(class="active")
+                    a(href="/") home
+                li
+                    a(href="/users") users
+            ul(class="nav navbar-nav navbar-right")
+                li
+                    if user
+                        a(href="#")
+                            span(class="glyphicon glyphicon-user", style={"margin-right": "5px"})
+                            | #{user.username}!
+                    else
+                        a(href="/login")
+                            span(class="glyphicon glyphicon-log-in", style={"margin-right": "5px"})
+                            | login
+
+
     block content

@@ -1,1 +1,1 @@
-NODE_ENV=development npm start
+NODE_ENV=development nodemon npm start

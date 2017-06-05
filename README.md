@@ -13,6 +13,8 @@ Then run
 ```
 NODE_ENV=development npm start
 
-
-
+```
+Or use 
+```
+./start.sh
 ```

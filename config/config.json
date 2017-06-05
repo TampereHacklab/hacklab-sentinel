@@ -1,24 +1,9 @@
 {
   "development": {
-    "username": "sentinel",
-    "password": "azCtwbVbV3dJJTNn",
-    "database": "sentinel",
+    "username": "dummy",
+    "password": "dummy",
+    "database": "hacklab-sentinel",
     "dialect": "sqlite",
     "storage": "db.sqlite"
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "sentinel",
-    "password": "azCtwbVbV3dJJTNn",
-    "database": "sentinel",
-    "host": "127.0.0.1",
-    "dialect": "mariadb"
   }
-
 }

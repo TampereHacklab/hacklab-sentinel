@@ -1,5 +1,5 @@
 {
-  "name": "sentinel",
+  "name": "hacklab-sentinel",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -13,7 +13,6 @@
     "express": "~4.15.3",
     "express-session": "^1.15.3",
     "express-ws": "^3.0.0",
-    "mariasql": "^0.2.6",
     "morgan": "~1.8.2",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",

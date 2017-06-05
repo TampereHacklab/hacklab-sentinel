@@ -13,7 +13,7 @@ function ensureAuthenticated(req, res, next) {
 /* GET home page. */
 router.get("/", function(req, res, next) {
   var viewbag = {
-    title: "nyarlathotep",
+    title: "hacklab sentinel",
     user: req.user
   }
   res.render("index", viewbag);
@@ -22,7 +22,7 @@ router.get("/", function(req, res, next) {
 router.get("/secret", function(req, res, next) {
   if(req.isAuthenticated()) {
     var viewbag = {
-      title: "secret nyarlathotep"
+      title: "secret hacklab sentinel"
     }
     res.render("index", viewbag);
   }

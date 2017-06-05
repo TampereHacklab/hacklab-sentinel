@@ -14,7 +14,11 @@ Then run
 NODE_ENV=development npm start
 
 ```
-Or use 
+Or install nodemon with following command(does need sudo)
+```
+npm install -g nodemon
+```
+After that you can use following command to run hacklab sentinel, in a way that it will automatically restart server if files are changed
 ```
 ./start.sh
 ```

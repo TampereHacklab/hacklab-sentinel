@@ -18,3 +18,5 @@ Or use
 ```
 ./start.sh
 ```
+Then point your browser to
+[http://localhost:3000](http://localhost:3000)

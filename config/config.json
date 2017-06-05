@@ -3,8 +3,8 @@
     "username": "sentinel",
     "password": "azCtwbVbV3dJJTNn",
     "database": "sentinel",
-    "host": "127.0.0.1",
-    "dialect": "mariadb"
+    "dialect": "sqlite",
+    "storage": "db.sqlite"
   },
   "test": {
     "username": "root",

@@ -1,6 +1,7 @@
 var models  = require('../models');
 var express = require('express');
 var router  = express.Router();
+var moment = require("moment");
 
 router.post('/create', function(req, res) {
   models.User.create({
@@ -20,4 +21,25 @@ router.get('/:user_id/destroy', function(req, res) {
   });
 });
 
+router.get("/", function(req, res) {
+    var viewbag = {
+        users: [],
+        user: req.user
+    };
+    models.User.findAll({
+        attributes: ["username", "email", "createdAt"]
+    }).then(function(users) {
+        for(var i = 0; i < users.length; i++) {
+            var user = users[i];
+            viewbag.users.push({
+                username: user.username,
+                email: user.email,
+                created: moment(user.createdAt).format("DD.MM.YYYY HH:mm")
+            });
+        }
+
+        res.render("users", viewbag);
+    });
+
+});
 module.exports = router;

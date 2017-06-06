@@ -1,0 +1,38 @@
+"use strict";
+
+module.exports = function(sequelize, DataTypes) {
+  var DataCollector = sequelize.define("DataCollector", {
+    name:  {
+        field: "name",
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    description: {
+        field: "description",
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        field: 'created_at',
+        allowNull: false,
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        field: 'updated_at',
+        allowNull: false
+    }
+  }, {
+      classMethods: {
+        associate: function(models) {
+          DataCollector.hasMany(models.Input, {
+              foreignKey: "data_collector_id",
+              as: "inputs"
+          });
+        }
+    },
+    tableName: "data_collector"
+  });
+
+  return DataCollector;
+};

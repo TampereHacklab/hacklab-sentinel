@@ -4,6 +4,9 @@
     "password": "dummy",
     "database": "hacklab-sentinel",
     "dialect": "sqlite",
-    "storage": "db.sqlite"
+    "storage": "db.sqlite",
+    "define": {
+        "timestamps": true
+    }
   }
 }

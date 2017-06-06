@@ -12,6 +12,12 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false
     },
+    identifier: {
+        field: "identifier",
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+    },
     createdAt: {
         type: DataTypes.DATE,
         field: 'created_at',

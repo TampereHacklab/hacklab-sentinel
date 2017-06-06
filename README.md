@@ -22,5 +22,9 @@ After that you can use following command to run hacklab sentinel, in a way that 
 ```
 ./start.sh
 ```
+Of if you are running Windows, you can use
+```
+start.bat
+```
 Then point your browser to
 [http://localhost:3000](http://localhost:3000)

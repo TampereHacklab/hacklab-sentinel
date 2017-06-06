@@ -28,7 +28,14 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
     }
   }, {
-
+      classMethods: {
+        associate: function(models) {
+          Device.hasOne(models.Input, {
+              foreignKey: "device_id",
+             as: "input"
+          });
+        }
+      },
     tableName: "device"
   });
 

@@ -33,6 +33,7 @@ module.exports = function(sequelize, DataTypes) {
         associate: function(models) {
           DataCollector.hasMany(models.Input, {
               foreignKey: "data_collector_id",
+              onDelete: "CASCADE",
               as: "inputs"
           });
         }

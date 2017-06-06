@@ -10,17 +10,26 @@ module.exports = function(sequelize, DataTypes) {
     fallingDelay: {
         field: "falling_delay",
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 0,
     },
     risingDelay: {
         field: "rising_delay",
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 0,
     },
     resolution: {
         field: "resolution",
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 0,
+    },
+    enabled: {
+        field: "enabled",
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -37,8 +46,14 @@ module.exports = function(sequelize, DataTypes) {
         associate: function(models) {
           Input.belongsTo(models.DataCollector, {
             onDelete: "CASCADE",
+            foreignKeyConstraint: true,
             foreignKey: "data_collector_id",
             as: "dataCollector"
+          });
+          Input.belongsTo(models.Device, {
+             onDelete: "SET NULL",
+             foreignKey: "device_id",
+             as: "device"
           });
         }
       },

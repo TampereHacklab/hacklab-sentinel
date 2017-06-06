@@ -16,7 +16,7 @@ var config = require(path.join(__dirname, 'config', 'config.json'))[env];
 var routes = require("./routes/index");
 var users = require("./routes/users");
 var login = require("./routes/login");
-
+var dataCollectors = require("./routes/data-collector");
 var app = express();
 
 // view engine setup
@@ -103,6 +103,7 @@ app.use(function(req, res, next){
 app.use("/", routes);
 app.use("/users", users);
 app.use("/login", login);
+app.use("/data-collectors", dataCollectors);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

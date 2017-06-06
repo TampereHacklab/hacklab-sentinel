@@ -1,0 +1,21 @@
+extend layout
+
+block content
+    div(class="container-fluid")
+        table(class="table table-striped")
+            thead
+                tr
+                    th name
+                    th description
+                    th created
+                    th updated
+                    th actions
+            tbody
+                each dc in dataCollectors
+                    tr
+                        td= dc.name
+                        td= dc.description
+                        td= dc.created
+                        td= dc.updated
+                        td
+                            a(class="btn btn-default", href="data-collectors/edit/" + dc.id) edit

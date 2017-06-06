@@ -1,0 +1,11 @@
+extend layout
+
+block content
+    div(class="container-fluid")
+        form
+            div(class="form-group")
+                label(for="name") name:
+                input(type="text", class="form-control", id="name", value=dataCollector.name)
+            div(class="form-group")
+                label(for="description") description:
+                input(type="text", class="form-control", id="description", value=dataCollector.description)

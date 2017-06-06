@@ -14,7 +14,7 @@ Then run
 NODE_ENV=development npm start
 
 ```
-Or install nodemon with following command(does need sudo)
+Or install nodemon with following command(does need sudo on Linux)
 ```
 npm install -g nodemon
 ```

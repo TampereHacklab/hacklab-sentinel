@@ -10,7 +10,8 @@ module.exports = function(sequelize, DataTypes) {
     machineName: {
         field: "machine_name",
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true,
     },
     description: {
         field: "description",

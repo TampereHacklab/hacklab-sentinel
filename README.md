@@ -1,4 +1,8 @@
 # README #
+Technology:
+javascript/node.js express framework
+SQLite/sequelize
+mqtt
 
 After cloning repository, run
 

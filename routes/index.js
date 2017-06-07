@@ -49,6 +49,7 @@ router.get("/inputtest", function(req, res) {
 });
 
 router.get("/generate", function(req, res) {
+    var states = [];
     var newdc = {
         name: "Data collector 1",
         machineName: "DATA_COLLECTOR_1",
@@ -57,38 +58,66 @@ router.get("/generate", function(req, res) {
         inputs: []
 
     };
-    for(var i = 0; i < 7; i++) {
-        newdc.inputs.push({
-            index: i,
-            fallingDelay: 0,
-            risingDelay: 0,
-            resolution: 1000,
-            enabled: true,
-            device: {
-                name: "Device " + (i + 1),
-                machineName: "DEVICE_" + (i + 1),
-                description: "Data producer " + (i + 1)
+    models.State.create({
+        name: "Running",
+        machineName: "RUNNING",
+        description: "Machine is running",
+        color: "#00ff00"
+    }).then(function(state) {
+        states.push(state);
+        models.State.create({
+            name: "Idling",
+            machineName: "IDLING",
+            description: "Machine is idling",
+            color: "#0000ff"
+        }).then(function(state) {
+            states.push(state);
+            for(var i = 0; i <= 7; i++) {
+                newdc.inputs.push({
+                    index: i,
+                    fallingDelay: 0,
+                    risingDelay: 0,
+                    resolution: 300,
+                    enabled: true,
+                    device: {
+                        name: "Device " + (i + 1),
+                        machineName: "DEVICE_" + (i + 1),
+                        description: "Data producer " + (i + 1)
+                    },
+                    high_state_id: states[0].id,
+                    low_state_id: states[1].id
+                });
             }
-        });
-    }
-
-    models.DataCollector.create(newdc,
-        {
-            include: [{
-                    model: models.Input,
-                    as: "inputs",
+            models.DataCollector.create(newdc,
+                {
                     include: [{
-                        model: models.Device,
-                        as: "device"
-                    }]
-                },
+                            model: models.Input,
+                            as: "inputs",
+                            include: [{
+                                model: models.Device,
+                                as: "device"
+                            },
+                            {
+                                model: models.State,
+                                as: "highState"
+                            },
+                            {
+                                model: models.State,
+                                as: "lowState"
+                            }]
+                        },
 
 
-            ]
-        }
-    ).then(function(dc) {
+                    ]
+                }
+            ).then(function(dc) {
+                res.json(dc);
+            });
+        });
 
-        res.json(dc);
-    })
+    });
+
+
+
 });
 module.exports = router;

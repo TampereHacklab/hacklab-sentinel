@@ -55,6 +55,16 @@ module.exports = function(sequelize, DataTypes) {
              foreignKey: "device_id",
              as: "device"
           });
+          Input.belongsTo(models.State, {
+             onDelete: "SET NULL",
+             foreignKey: "high_state_id",
+             as: "highState"
+          });
+          Input.belongsTo(models.State, {
+             onDelete: "SET NULL",
+             foreignKey: "low_state_id",
+             as: "lowState"
+          });
         }
       },
     tableName: "input"

@@ -6,6 +6,7 @@ block content
             thead
                 tr
                     th name
+                    th machine name
                     th description
                     th created
                     th updated
@@ -14,6 +15,7 @@ block content
                 each dc in dataCollectors
                     tr
                         td= dc.name
+                        td= dc.machineName
                         td= dc.description
                         td= dc.created
                         td= dc.updated

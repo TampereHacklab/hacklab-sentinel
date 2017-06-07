@@ -51,6 +51,7 @@ router.get("/inputtest", function(req, res) {
 router.get("/generate", function(req, res) {
     var newdc = {
         name: "Data collector 1",
+        machineName: "DATA_COLLECTOR_1",
         description: "First data collector",
         identifier: "123456789",
         inputs: []
@@ -65,6 +66,7 @@ router.get("/generate", function(req, res) {
             enabled: true,
             device: {
                 name: "Device " + (i + 1),
+                machineName: "DEVICE_" + (i + 1),
                 description: "Data producer " + (i + 1)
             }
         });

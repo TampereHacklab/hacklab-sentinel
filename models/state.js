@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     color: {
         field: "color",
-        type: DataTypes.STRING(6),
+        type: DataTypes.STRING(7),
         allowNull: false
     },
     createdAt: {

@@ -1,5 +1,6 @@
 var models = require('../models');
 var mqtt = require("mqtt");
+var md5 = require("md5");
 var DataGate = function() {};
 DataGate.prototype.initialize = function(options) {
     var client = mqtt.connect(options.address);
@@ -11,6 +12,7 @@ DataGate.prototype.initialize = function(options) {
 
     client.on("message", function(topic, message) {
         console.log("ON MESSAGE");
+
         if(topic.indexOf("datagate") > 0) {
             handleDatagate({
                 topic: topic,
@@ -79,6 +81,10 @@ DataGate.prototype.initialize = function(options) {
     function handleDatagate(data) {
         var splitTopic = data.topic.split("/");
         var payload = JSON.parse(data.message.toString());
+        if(typeof payload.checksum == "undefined" || payload.checksum != md5(payload.state + payload.timestamp + "hacklab tampere")) {
+            console.log("INVALID CHECKSUM");
+            return;
+        }
         payload.timestamp = new Date(payload.timestamp);
         var identifier = splitTopic[3];
         var input = parseInt(splitTopic[4]);

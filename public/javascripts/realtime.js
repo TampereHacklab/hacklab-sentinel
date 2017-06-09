@@ -76,8 +76,7 @@ function parseClientMessages(topic, message) {
             container: null,
             durationInterval: null,
         };
-        console.log(jsonMessage.timestamp);
-        console.log(clients[client].seen);
+
         var c = $("<div></div>").addClass("underling");
         var h = $("<h1></h1>").html(clients[client].name).addClass("header");
         var m = $("<span></span>").addClass("message");

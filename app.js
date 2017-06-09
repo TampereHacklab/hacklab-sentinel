@@ -136,5 +136,9 @@ app.use(function(err, req, res, next) {
   });
 });
 
+var datagate = require("./puppets/datagate.js");
+datagate.initialize({
+    address: "mqtt://nyarlathotep.dy.fi"
+});
 
 module.exports = app;

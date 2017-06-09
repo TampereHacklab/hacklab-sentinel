@@ -16,6 +16,7 @@ var config = require(path.join(__dirname, 'config', 'config.json'))[env];
 var routes = require("./routes/index");
 var users = require("./routes/users");
 var login = require("./routes/login");
+var realtime = require("./routes/realtime");
 var dataCollectors = require("./routes/data-collector");
 var app = express();
 
@@ -26,6 +27,8 @@ app.set("view engine", "pug");
 //serve client side js/css/fonts
 app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js")); // redirect bootstrap JS
 app.use("/js", express.static(__dirname + "/node_modules/jquery/dist")); // redirect JS jQuery
+app.use("/js", express.static(__dirname + "/node_modules/mqtt/dist")); // redirect JS jQuery
+app.use("/js", express.static(__dirname + "/node_modules/moment/min")); // redirect JS jQuery
 app.use("/js", express.static(__dirname + "/public/javascripts")); // redirect JS jQuery
 app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css")); // redirect CSS bootstrap
 app.use("/css", express.static(__dirname + "/public/stylesheets")); // redirect CSS bootstrap
@@ -104,6 +107,7 @@ app.use("/", routes);
 app.use("/users", users);
 app.use("/login", login);
 app.use("/data-collectors", dataCollectors);
+app.use("/realtime", realtime);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

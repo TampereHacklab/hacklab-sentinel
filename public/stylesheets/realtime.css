@@ -1,0 +1,48 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.statistics {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 4px;
+    background-color: #000000;
+    color: #ffffff;
+}
+.statistics h1.header {
+    margin: 0px;
+}
+.underling-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-around;
+    background-color: rgba(86,61,124,.15);
+    flex-wrap: wrap;
+}
+
+.underling {
+    padding: 5px;
+    background-color: rgba(86,61,124,.15);
+    border: 1px solid rgba(86,61,124,.15);
+}
+
+.underling h1.header {
+    margin: 0px;
+}
+
+.underling span.message {
+    display: block;
+}
+
+.underling span.timestamp {
+    display: block;
+}
+
+.underling span.duration {
+    display: block;
+}
+.state {
+    height: 20px;
+}

@@ -2,35 +2,41 @@ doctype html
 html
   head
     title hacklab sentinel
+    meta(name="viewport", content="width=device-width, initial-scale=1")
     script(src="/js/jquery.min.js")
     link(rel="stylesheet", href="/css/bootstrap.min.css")
     script(src="/js/bootstrap.min.js")
     link(rel="stylesheet", href="/css/style.css")
     script(src="/js/main.js")
   body
-    nav(class="navbar")
+    nav(class="navbar navbar-inverse")
         div(class="container-fluid")
             div(class="navbar-header")
+                button(type="button", class="navbar-toggle", data-toggle="collapse", data-target="#sentinel-navbar")
+                    span(class="icon-bar")
+                    span(class="icon-bar")
+                    span(class="icon-bar")
                 a(class="navbar-brand" href="/") hacklab sentinel
-            ul(class="nav navbar-nav")
-                li
-                    a(href="/") home
-                li
-                    a(href="/realtime") realtime
-                li
-                    a(href="/users") users
-                li
-                    a(href="/data-collectors") data collectors
-            ul(class="nav navbar-nav navbar-right")
-                li
-                    if user
-                        a(href="#")
-                            span(class="glyphicon glyphicon-user", style={"margin-right": "5px"})
-                            | #{user.username}!
-                    else
-                        a(href="/login")
-                            span(class="glyphicon glyphicon-log-in", style={"margin-right": "5px"})
-                            | login
+            div(class="collapse navbar-collapse", id="sentinel-navbar")
+                ul(class="nav navbar-nav")
+                    li
+                        a(href="/") home
+                    li
+                        a(href="/realtime") realtime
+                    li
+                        a(href="/users") users
+                    li
+                        a(href="/data-collectors") data collectors
+                ul(class="nav navbar-nav navbar-right")
+                    li
+                        if user
+                            a(href="#")
+                                span(class="glyphicon glyphicon-user", style={"margin-right": "5px"})
+                                | #{user.username}!
+                        else
+                            a(href="/login")
+                                span(class="glyphicon glyphicon-log-in", style={"margin-right": "5px"})
+                                | login
 
 
     block content

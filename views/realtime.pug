@@ -2,6 +2,8 @@ extend layout
 block content
     script(src="/js/mqtt.min.js")
     script(src="/js/moment.min.js")
+    script.
+        var mqttAddress = "#{mqtt}";
     link(rel="stylesheet", href="/css/realtime.css")
 
     div(class="container-fluid")

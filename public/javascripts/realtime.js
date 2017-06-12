@@ -1,5 +1,5 @@
 var clients = {};
-var client = mqtt.connect("mqtt://nyarlathotep.dy.fi:1884");
+var client = mqtt.connect(mqttAddress);
 client.on("connect", function() {
     client.subscribe("hacklab/tampere/realtime/status/+");
     client.publish("hacklab/tampere/realtime/request/DC1");

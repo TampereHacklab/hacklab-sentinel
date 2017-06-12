@@ -13,11 +13,20 @@ function ensureAuthenticated(req, res, next) {
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  var viewbag = {
-    title: "hacklab sentinel",
-    user: req.user
-  }
-  res.render("realtime", viewbag);
+    var viewbag = {
+        user: req.user
+    }
+    models.Settings.findOne({
+        where: {
+            name: "MQTT_ADDRESS"
+        },
+        attributes: ["value"]
+    }).then(function(mqtt) {
+        viewbag.mqtt = mqtt.value;
+        res.render("realtime", viewbag);
+    });
+
+
 });
 
 module.exports = router;

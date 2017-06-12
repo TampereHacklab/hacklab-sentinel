@@ -2,67 +2,15 @@ var clients = {};
 var client = mqtt.connect("mqtt://nyarlathotep.dy.fi:1884");
 client.on("connect", function() {
     client.subscribe("hacklab/tampere/realtime/status/+");
-    client.subscribe("$SYS/broker/bytes/received");
-    client.subscribe("$SYS/broker/bytes/sent");
-    client.subscribe("$SYS/broker/clients/connected");
-    client.subscribe("$SYS/broker/uptime");
-    client.subscribe("$SYS/broker/messages/sent");
-    client.subscribe("$SYS/broker/messages/received");
-
     client.publish("hacklab/tampere/realtime/request/DC1");
 });
 
 client.on("message", function(topic, message) {
     var msg = message.toString();
-    if(topic.indexOf("/broker") > 0) {
-        parseBrokerMessages(topic, msg);
-    }
-
-    else if(topic.indexOf("realtime") > 0) {
+    if(topic.indexOf("realtime") > 0) {
         parseClientMessages(topic, msg);
-
     }
-
 });
-
-function parseBrokerMessages(topic, message) {
-    if(topic.indexOf("bytes/received") > 0) {
-        var bytes = parseInt(message);
-        var receivedBytes = $(".statistics #received-bytes span.value");
-        if(bytes < 1024) {
-            $(receivedBytes).html(parseInt(bytes) + "B");
-        } else if (bytes > 1024 && bytes < 1024 * 1024) {
-            $(receivedBytes).html(Math.round(parseInt(bytes) / 1024) + "kB");
-        }
-        else {
-            $(receivedBytes).html(Math.round(parseInt(bytes) / 1024) + "MB");
-        }
-    }
-    else if(topic.indexOf("bytes/sent") > 0) {
-        var bytes = parseInt(message);
-        var receivedBytes = $(".statistics #sent-bytes span.value");
-        if(bytes < 1024) {
-            $(receivedBytes).html(parseInt(bytes) + "B");
-        } else if (bytes > 1024 && bytes < 1024 * 1024) {
-            $(receivedBytes).html(Math.round(parseInt(bytes) / 1024) + "kB");
-        }
-        else {
-            $(receivedBytes).html(Math.round(parseInt(bytes) / 1024) + "MB");
-        }
-    }
-    else if(topic.indexOf("uptime") > 0) {
-        $(".statistics #uptime span.value").html(moment.duration(parseInt(message) * 1000).humanize());
-    }
-    else if(topic.indexOf("clients/connected") > 0) {
-        $(".statistics #clients-connected span.value").html(parseInt(message));
-    }
-    else if(topic.indexOf("messages/sent") > 0) {
-        $(".statistics #messages-sent span.value").html(parseInt(message));
-    }
-    else if(topic.indexOf("messages/received") > 0) {
-        $(".statistics #messages-received span.value").html(parseInt(message));
-    }
-}
 
 function parseClientMessages(topic, message) {
     var client = topic.split("/")[4];

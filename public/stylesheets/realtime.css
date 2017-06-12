@@ -2,18 +2,9 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.statistics {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-    padding: 4px;
-}
-.statistics h1.header {
-    margin: 0px;
-}
 .underling-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     align-content: space-around;
 

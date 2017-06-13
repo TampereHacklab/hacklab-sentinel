@@ -9,6 +9,9 @@ $(window).focus(function() {
     client.publish("hacklab/tampere/realtime/request/DC1");
 });
 
+$(window).on("unload", function() {
+    client.disconnect();
+});
 client.on("message", function(topic, message) {
     var msg = message.toString();
     if(topic.indexOf("realtime") > 0) {

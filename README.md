@@ -37,6 +37,6 @@ datasource.py in raspberry-pi can be used to input data into system. Paho MQTT c
 ```
 python3 datasource.py DC1 0 low
 ```
-Command above will send to broker message that datacollector 1(raspberry) input 0 is low, and server will receive that and determine what to do with that.
+Command above will send to broker message that datacollector 1(raspberry) input 0 is low, and server will receive that and determine what to do with that. inputs range from 0 to 7 and input can be low or high. 
 
 [https://nyarlathotep.dy.fi/sentinel/realtime](https://nyarlathotep.dy.fi/sentinel/realtime) should be accessible for testing.

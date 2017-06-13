@@ -1,12 +1,25 @@
 {
-  "development": {
-    "username": "dummy",
-    "password": "dummy",
-    "database": "hacklab-sentinel",
-    "dialect": "sqlite",
-    "storage": "db.sqlite",
-    "define": {
-        "timestamps": true
+    "development": {
+        "username": "dummy",
+        "password": "dummy",
+        "database": "hacklab-sentinel",
+        "dialect": "sqlite",
+        "storage": "db.sqlite",
+        "define": {
+            "timestamps": true
+        },
+        "baseURL": "http://localhost:3000"
+    },
+    "production": {
+        "username": "dummy",
+        "password": "dummy",
+        "database": "hacklab-sentinel",
+        "dialect": "sqlite",
+        "storage": "db.sqlite",
+        "define": {
+          "timestamps": true
+        },
+        "baseURL" : "https://nyarlathotep.dy.fi/sentinel"
+
     }
-  }
 }

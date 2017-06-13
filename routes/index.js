@@ -15,7 +15,8 @@ function ensureAuthenticated(req, res, next) {
 router.get("/", function(req, res, next) {
   var viewbag = {
     title: "hacklab sentinel",
-    user: req.user
+    user: req.user,
+    baseURL: req.baseURL
   }
   res.render("index", viewbag);
 });

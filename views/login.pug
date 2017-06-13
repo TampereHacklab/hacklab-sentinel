@@ -6,7 +6,7 @@ block content
       strong Login failed
       |Try again
     h2 Log in
-    form(action="/login/local-login", method="post", role="form")
+    form(action=baseURL + "/login/local-login", method="post", role="form")
       div(class="form-group has-error has-feedback")
         label(for="username") Username:
         input(name="username", id="username", placeholder="", class="form-control", autofocus)
@@ -19,7 +19,7 @@ block content
   br
   div(class="container")
     h2 Register new user
-    form(action="/login/register", method="post", role="form")
+    form(action=baseURL + "/login/register", method="post", role="form")
       div(class="form-group")
         label(for="username") Username:
         input(name="username", id="username", placeholder="Choose you unique password, ie. email address", class="form-control")

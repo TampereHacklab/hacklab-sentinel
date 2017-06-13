@@ -103,6 +103,10 @@ app.use(function(req, res, next){
   next();
 });
 
+app.use(function(req, resp, next) {
+    req.baseURL = config.baseURL;
+    next();
+});
 app.use("/", routes);
 app.use("/users", users);
 app.use("/login", login);

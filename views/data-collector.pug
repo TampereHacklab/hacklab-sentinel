@@ -2,7 +2,7 @@ extend layout
 
 block content
     div(class="container-fluid")
-        form(action="/data-collectors/create", method="POST")
+        form(action=baseURL + "/data-collectors/create", method="POST")
             input(type="hidden", id="id", name="id", value=dataCollector.id)
             div(class="form-group")
                 label(for="name") name:
@@ -21,7 +21,7 @@ block content
                     tr
                         td(style="display: none;")
                         th input
-                        th enabled                
+                        th enabled
                         th rising delay
                         th falling delay
                         th resolution

@@ -22,13 +22,13 @@ router.get('/:user_id/destroy', function(req, res) {
 });
 */
 router.post("/create", function(req, res) {
-    console.log(req.body)
     res.json(req.body);
 });
 router.get('/edit/:id', function(req, res) {
     var viewbag = {
         dataCollector: null,
-        user: req.user
+        user: req.user,
+        baseURL: req.baseURL
     }
   models.DataCollector.findOne({
     where: {
@@ -69,7 +69,8 @@ router.get('/edit/:id', function(req, res) {
 router.get("/", function(req, res) {
     var viewbag = {
         dataCollectors: [],
-        user: req.user
+        user: req.user,
+        baseURL: req.baseURL,
     };
     models.DataCollector.findAll({
         attributes: ["id", "name", "machineName", "description", "identifier", "createdAt", "updatedAt"]

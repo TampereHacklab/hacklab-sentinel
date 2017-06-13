@@ -24,7 +24,8 @@ router.get('/:user_id/destroy', function(req, res) {
 router.get("/", function(req, res) {
     var viewbag = {
         users: [],
-        user: req.user
+        user: req.user,
+        baseURL: req.baseURL
     };
     models.User.findAll({
         attributes: ["username", "email", "lastLogin", "createdAt"]

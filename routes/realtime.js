@@ -14,7 +14,8 @@ function ensureAuthenticated(req, res, next) {
 /* GET home page. */
 router.get("/", function(req, res, next) {
     var viewbag = {
-        user: req.user
+        user: req.user,
+        baseURL: req.baseURL
     }
     models.Settings.findOne({
         where: {

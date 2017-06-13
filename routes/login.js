@@ -5,7 +5,10 @@ var passport = require("passport");
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  res.render("login");
+    var viewbag = {
+        baseURL: req.baseURL
+    };
+  res.render("login", viewbag);
 });
 
 router.post('/local-login',
@@ -20,20 +23,21 @@ router.post('/local-login',
             id: req.user.id
         }
     }).then(function(user) {
-        res.redirect('/');
+        res.redirect(req.baseURL + '/');
     });
 
   });
   //passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
 
 router.get("/logout", function(req, res) {
-  console.log("log out");
   req.logout();
-  res.redirect("/login");
+  res.redirect(req.baseURL + "/login");
 });
 
 router.post("/register", function(req, res, next) {
-  var viewbag = {};
+  var viewbag = {
+      baseURL: req.baseURL
+  };
   var bcrypt = require("bcryptjs");
   if(req.body.password != req.body["password-repeat"]) {
     viewbag.passwordError = "Passwords do not match";
@@ -50,7 +54,7 @@ router.post("/register", function(req, res, next) {
         email: req.body.email
       }).then(function(user) {
         console.log("new user created: " + user.username);
-        res.redirect("/");
+        res.redirect(baseURL + "/login");
         return;
       });
     }

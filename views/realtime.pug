@@ -1,12 +1,12 @@
 extend layout
 block content
-    script(src="js/mqtt.min.js")
-    script(src="js/moment.min.js")
+    script(src=baseURL + "/js/mqtt.min.js")
+    script(src=baseURL + "/js/moment.min.js")
     script.
         var mqttAddress = "#{mqtt}";
-    link(rel="stylesheet", href="css/realtime.css")
-    script(src="js/underling.js")
-    script(src="js/utilities.js")
+    link(rel="stylesheet", href=baseURL + "/css/realtime.css")
+    script(src=baseURL + "/js/underling.js")
+    script(src=baseURL + "/js/utilities.js")
     div(class="container-fluid")
         div(class="underling-container")
-    script(src="js/realtime.js")
+    script(src=baseURL + "/js/realtime.js")

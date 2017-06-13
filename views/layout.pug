@@ -3,11 +3,11 @@ html
   head
     title hacklab sentinel
     meta(name="viewport", content="width=device-width, initial-scale=1")
-    script(src="/js/jquery.min.js")
-    link(rel="stylesheet", href="/css/bootstrap.min.css")
-    script(src="/js/bootstrap.min.js")
-    link(rel="stylesheet", href="/css/style.css")
-    script(src="/js/main.js")
+    script(src=baseURL + "/js/jquery.min.js")
+    link(rel="stylesheet", href=baseURL + "/css/bootstrap.min.css")
+    script(src=baseURL + "/js/bootstrap.min.js")
+    link(rel="stylesheet", href=baseURL + "/css/style.css")
+    script(src=baseURL + "/js/main.js")
   body
     nav(class="navbar navbar-inverse")
         div(class="container-fluid")
@@ -16,25 +16,27 @@ html
                     span(class="icon-bar")
                     span(class="icon-bar")
                     span(class="icon-bar")
-                a(class="navbar-brand" href="/") hacklab sentinel
+                a(class="navbar-brand" href="") hacklab sentinel
             div(class="collapse navbar-collapse", id="sentinel-navbar")
                 ul(class="nav navbar-nav")
                     li
-                        a(href="/") home
+                        a(href=baseURL) home
                     li
-                        a(href="/realtime") realtime
+                        a(href=baseURL + "/realtime") realtime
                     li
-                        a(href="/users") users
+                        a(href=baseURL + "/users") users
                     li
-                        a(href="/data-collectors") data collectors
+                        a(href=baseURL + "/devices") devices
+                    li
+                        a(href=baseURL + "/data-collectors") data collectors
                 ul(class="nav navbar-nav navbar-right")
                     li
                         if user
-                            a(href="#")
+                            a(href=baseURL + "/#")
                                 span(class="glyphicon glyphicon-user", style={"margin-right": "5px"})
                                 | #{user.username}!
                         else
-                            a(href="/login")
+                            a(href=baseURL + "/login")
                                 span(class="glyphicon glyphicon-log-in", style={"margin-right": "5px"})
                                 | login
 

@@ -1,0 +1,20 @@
+extend layout
+
+block content
+    div(class="container-fluid")
+        form(action=baseURL + "/devices/create", method="POST")
+            input(type="hidden", id="id", name="id", value=device.id)
+            div(class="form-group")
+                label(for="name") name:
+                input(type="text", class="form-control", name="name", id="name", value=device.name)
+            div(class="form-group")
+                label(for="name") machine name:
+                input(type="text", class="form-control", name="machineName", id="machineName", value=device.machineName)
+            div(class="form-group")
+                label(for="description") description:
+                input(type="text", class="form-control", name="description", id="description", value=device.description)
+            div(class="form-group")
+                label(for="identifier") image:
+                input(type="text", class="form-control", name="image", id="image", value=device.image)
+
+            input(type="submit", class="btn btn-default", value="Save")

@@ -1,0 +1,25 @@
+extend layout
+
+block content
+    div(class="container-fluid")
+        table(class="table table-striped")
+            thead
+                tr
+                    th name
+                    th machine name
+                    th description
+                    th image
+                    th created
+                    th updated
+                    th actions
+            tbody
+                each d in devices
+                    tr
+                        td= d.name
+                        td= d.machineName
+                        td= d.description
+                        td= d.image
+                        td= d.created
+                        td= d.updated
+                        td
+                            a(class="btn btn-default", href=baseURL + "/devices/edit/" + d.id) edit

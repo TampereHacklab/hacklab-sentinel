@@ -25,7 +25,7 @@
 }
 
 .underling div.content {
-    display: block;
+    display: inline-block;
 }
 
 .underling div.timestamp {
@@ -36,6 +36,10 @@
     display: block;
     font-size: 25px;
     font-weight: bold;
+}
+.underling div.header-wrapper .image {
+    height: 80px;
+    float: right;
 }
 .state {
     height: 20px;

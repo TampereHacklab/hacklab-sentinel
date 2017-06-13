@@ -6,7 +6,7 @@ client.on("connect", function() {
 });
 
 $(window).focus(function() {
-    client.publish("hacklab/tampere/realtime/request/DC1");
+    //client.publish("hacklab/tampere/realtime/request/DC1");
 });
 
 $(window).on("unload", function() {
@@ -21,7 +21,7 @@ client.on("message", function(topic, message) {
 
 function parseClientMessages(topic, message) {
     var identifier = topic.split("/")[4];
-	var jsonMessage = JSON.parse(message.toString())
+	var jsonMessage = JSON.parse(message.toString());
     if(typeof clients[identifier] == "undefined") {
         clients[identifier] = new Underling({
             container: ".underling-container",
@@ -29,7 +29,8 @@ function parseClientMessages(topic, message) {
             name: jsonMessage.device,
             state: jsonMessage.state,
             identifier: identifier,
-            color: jsonMessage.color
+            color: jsonMessage.color,
+            image: jsonMessage.image,
         });
 
     }

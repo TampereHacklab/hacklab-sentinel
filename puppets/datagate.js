@@ -69,7 +69,8 @@ DataGate.prototype.initialize = function(options) {
                             machineName: device.machineName,
                             timestamp: latest.start,
                             state: latest.state.name,
-                            color: latest.state.color
+                            color: latest.state.color,
+                            image: device.image,
                         });
                     });
                 })(d);
@@ -192,9 +193,11 @@ DataGate.prototype.initialize = function(options) {
     function transmitRealtime(data) {
         client.publish("hacklab/tampere/realtime/status/" + data.machineName, JSON.stringify({
             device: data.device,
+            identifier: data.machineName,
             timestamp: data.timestamp,
             state: data.state,
-            color: data.color
+            color: data.color,
+            image: data.image
         }));
     }
 

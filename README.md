@@ -10,7 +10,7 @@ After cloning repository, run
 npm update
 
 ```
-which will download everything needed.
+which will download everything needed. Then copy db.sqlite from test_db to root folder.
 
 Then run
 
@@ -32,3 +32,11 @@ start.bat
 ```
 Then point your browser to
 [http://localhost:3000](http://localhost:3000)
+
+datasource.py in raspberry-pi can be used to input data into system. Paho MQTT client must be installed first.
+```
+python3 datasource.py DC1 0 low
+```
+Command above will send to broker message that datacollector 1(raspberry) input 0 is low, and server will receive that and determine what to do with that.
+
+[https://nyarlathotep.dy.fi/sentinel/realtime](https://nyarlathotep.dy.fi/sentinel/realtime) should be accessible for testing.

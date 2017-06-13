@@ -54,7 +54,7 @@ router.post("/register", function(req, res, next) {
         email: req.body.email
       }).then(function(user) {
         console.log("new user created: " + user.username);
-        res.redirect(baseURL + "/login");
+        res.redirect(req.baseURL + "/login");
         return;
       });
     }

@@ -33,9 +33,10 @@ function Underling(options) {
 
     this.elements.headerWrapper.append(this.elements.header);
 
+    this.elements.contentWrapper.append(this.elements.duration);
     this.elements.contentWrapper.append(this.elements.content);
     this.elements.contentWrapper.append(this.elements.timestamp);
-    this.elements.contentWrapper.append(this.elements.duration);
+
 
     this.elements.container.append(this.elements.headerWrapper);
     this.elements.container.append(this.elements.contentWrapper);

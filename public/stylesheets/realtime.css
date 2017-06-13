@@ -11,6 +11,8 @@
 .underling {
     border: 1px solid rgba(86,61,124,.15);
     margin-bottom: 10px;
+    width: 300px;
+    max-width: 100%;
 }
 .underling .content-wrapper {
     padding: 5px;

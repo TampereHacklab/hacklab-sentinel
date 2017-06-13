@@ -10,7 +10,7 @@ $(window).focus(function() {
 });
 
 $(window).on("unload", function() {
-    client.disconnect();
+    client.end();
 });
 client.on("message", function(topic, message) {
     var msg = message.toString();

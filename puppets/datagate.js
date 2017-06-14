@@ -1,6 +1,7 @@
 var models = require('../models');
 var mqtt = require("mqtt");
 var md5 = require("md5");
+var moment = require("moment");
 var DataGate = function() {};
 DataGate.prototype.initialize = function(options) {
     var client = mqtt.connect(options.address);
@@ -32,7 +33,7 @@ DataGate.prototype.initialize = function(options) {
         models.DataCollector.findOne({
             where: [
                 {
-                    identifier: dc
+                    identifier: dc,
                 }
             ],
             include: [ {
@@ -43,7 +44,10 @@ DataGate.prototype.initialize = function(options) {
                         model: models.Device,
                         as: "device"
                     }
-                ]
+                ],
+                where: {
+                    enabled: true
+                }
             }
             ]
         }).then(function(dataCollector) {
@@ -64,14 +68,27 @@ DataGate.prototype.initialize = function(options) {
                         as: "state"
                     }]
                     }).then(function(latest) {
-                        transmitRealtime({
-                            device: device.name,
-                            machineName: device.machineName,
-                            timestamp: latest.start,
-                            state: latest.state.name,
-                            color: latest.state.color,
-                            image: device.image,
-                        });
+                        if(latest == null) {
+                            transmitRealtime({
+                                device: device.name,
+                                machineName: device.machineName,
+                                timestamp: moment().format("YYYY-MM-DD[T]HH:mm:ss.sss"),
+                                state: "Poissa päältä",
+                                color: "#ff0000",
+                                image: device.image,
+                            });
+                        }
+                        else {
+                            transmitRealtime({
+                                device: device.name,
+                                machineName: device.machineName,
+                                timestamp: latest.start,
+                                state: latest.state.name,
+                                color: latest.state.color,
+                                image: device.image,
+                            });
+                        }
+
                     });
                 })(d);
 

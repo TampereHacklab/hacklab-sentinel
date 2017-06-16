@@ -16,19 +16,20 @@ html
                     span(class="icon-bar")
                     span(class="icon-bar")
                     span(class="icon-bar")
-                a(class="navbar-brand" href="") hacklab sentinel
+                a(class="navbar-brand" href=baseURL) hacklab sentinel
             div(class="collapse navbar-collapse", id="sentinel-navbar")
                 ul(class="nav navbar-nav")
                     li
-                        a(href=baseURL) home
-                    li
                         a(href=baseURL + "/realtime") realtime
-                    li
-                        a(href=baseURL + "/users") users
-                    li
-                        a(href=baseURL + "/devices") devices
-                    li
-                        a(href=baseURL + "/data-collectors") data collectors
+                    if user
+                        li
+                            a(href=baseURL + "/users") users
+                    if user
+                        li
+                            a(href=baseURL + "/devices") devices
+                    if user
+                        li
+                            a(href=baseURL + "/data-collectors") data collectors
                 ul(class="nav navbar-nav navbar-right")
                     li
                         if user

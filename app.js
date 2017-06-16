@@ -104,7 +104,16 @@ app.use(function(req, res, next){
   next();
 });
 app.use(function(req, resp, next) {
-    req.baseURL = config.baseURL;
+    req.config = {
+        baseURL: config["baseURL"],
+        mqtt: {
+            broker: {
+                ws: config["mqtt-broker-ws"],
+                tcp: config["mqtt-broker-tcp"]
+            },
+            baseTopic: config["mqtt-base-topic"]
+        }
+    }
     next();
 });
 app.use("/", routes);
@@ -147,7 +156,9 @@ app.use(function(err, req, res, next) {
 
 var datagate = require("./puppets/datagate.js");
 datagate.initialize({
-    address: "mqtt://nyarlathotep.dy.fi"
+    broker: config["mqtt-broker-tcp"],
+    baseTopic: config["mqtt-base-topic"],
+    checksumSalt: config["mqtt-checksum-salt"]
 });
 
 module.exports = app;

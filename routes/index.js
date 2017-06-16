@@ -16,7 +16,7 @@ router.get("/", function(req, res, next) {
   var viewbag = {
     title: "hacklab sentinel",
     user: req.user,
-    baseURL: req.baseURL
+    baseURL: req.config.baseURL
   }
   res.render("index", viewbag);
 });

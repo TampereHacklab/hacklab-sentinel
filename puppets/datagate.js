@@ -2,17 +2,22 @@ var models = require('../models');
 var mqtt = require("mqtt");
 var md5 = require("md5");
 var moment = require("moment");
+
 var DataGate = function() {};
 DataGate.prototype.initialize = function(options) {
-    var client = mqtt.connect(options.address);
-
+    var client = mqtt.connect(options.broker, {
+        connectTimeout: 10 * 1000,
+        keepAlive: 120,
+        clientId: "sentinel_js_mqqt_server"
+    });
     client.on("connect", function() {
-        client.subscribe("hacklab/tampere/datagate/#");
-        client.subscribe("hacklab/tampere/realtime/request/+");
+        client.subscribe(options.baseTopic + "/tampere/datagate/#");
+        client.subscribe(options.baseTopic + "/tampere/realtime/request/+");
     });
 
     client.on("message", function(topic, message) {
         console.log("ON MESSAGE");
+        console.log(topic);
 
         if(topic.indexOf("datagate") > 0) {
             handleDatagate({
@@ -99,7 +104,7 @@ DataGate.prototype.initialize = function(options) {
     function handleDatagate(data) {
         var splitTopic = data.topic.split("/");
         var payload = JSON.parse(data.message.toString());
-        if(typeof payload.checksum == "undefined" || payload.checksum != md5(payload.state + payload.timestamp + "hacklab tampere")) {
+        if(typeof payload.checksum == "undefined" || payload.checksum != md5(payload.state + payload.timestamp + options.checksumSalt)) {
             console.log("INVALID CHECKSUM");
             return;
         }
@@ -134,6 +139,7 @@ DataGate.prototype.initialize = function(options) {
             }]
             }).then(function(input) {
                 if(input) {
+                    console.log("FOUND INPUT");
                     var s = {
                         device: input.device,
                         state: payload.state === "high" ? input.highState : input.lowState
@@ -151,6 +157,7 @@ DataGate.prototype.initialize = function(options) {
                         }]
                     }).then(function(previous) {
                         if(previous) {
+                            console.log("FOUND PREVIOUS");
                             if(previous.state.id == s.state.id) {
                                 console.log("SAME STATE");
                                 return;
@@ -185,6 +192,7 @@ DataGate.prototype.initialize = function(options) {
                             })
                         }
                         else {
+                            console.log("EMPTY DB");
                             models.StateData.create({
                                 start: payload.timestamp,
                                 end: null,
@@ -208,7 +216,7 @@ DataGate.prototype.initialize = function(options) {
 
 
     function transmitRealtime(data) {
-        client.publish("hacklab/tampere/realtime/status/" + data.machineName, JSON.stringify({
+        client.publish(options.baseTopic + "/tampere/realtime/status/" + data.machineName, JSON.stringify({
             device: data.device,
             identifier: data.machineName,
             timestamp: data.timestamp,

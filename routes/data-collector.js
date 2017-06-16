@@ -28,7 +28,7 @@ router.get('/edit/:id', function(req, res) {
     var viewbag = {
         dataCollector: null,
         user: req.user,
-        baseURL: req.baseURL
+        baseURL: req.config.baseURL
     }
   models.DataCollector.findOne({
     where: {
@@ -70,7 +70,7 @@ router.get("/", function(req, res) {
     var viewbag = {
         dataCollectors: [],
         user: req.user,
-        baseURL: req.baseURL,
+        baseURL: req.config.baseURL,
     };
     models.DataCollector.findAll({
         attributes: ["id", "name", "machineName", "description", "identifier", "createdAt", "updatedAt"]

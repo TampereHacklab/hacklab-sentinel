@@ -28,7 +28,7 @@ router.get('/edit/:id', function(req, res) {
     var viewbag = {
         dataCollector: null,
         user: req.user,
-        baseURL: req.baseURL
+        baseURL: req.config.baseURL
     }
   models.Device.findOne({
     where: {
@@ -43,7 +43,7 @@ router.get("/", function(req, res) {
     var viewbag = {
         devices: [],
         user: req.user,
-        baseURL: req.baseURL,
+        baseURL: req.config.baseURL,
     };
     models.Device.findAll({
         attributes: ["id", "name", "machineName", "description", "image", "createdAt", "updatedAt"]

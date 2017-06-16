@@ -25,7 +25,7 @@ router.get("/", function(req, res) {
     var viewbag = {
         users: [],
         user: req.user,
-        baseURL: req.baseURL
+        baseURL: req.config.baseURL
     };
     models.User.findAll({
         attributes: ["username", "email", "lastLogin", "createdAt"]

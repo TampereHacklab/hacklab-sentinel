@@ -15,19 +15,13 @@ function ensureAuthenticated(req, res, next) {
 router.get("/", function(req, res, next) {
     var viewbag = {
         user: req.user,
-        baseURL: req.baseURL
-    }
-    models.Settings.findOne({
-        where: {
-            name: "MQTT_ADDRESS"
-        },
-        attributes: ["value"]
-    }).then(function(mqtt) {
-        viewbag.mqtt = mqtt.value;
-        res.render("realtime", viewbag);
-    });
-
-
+        baseURL: req.config.baseURL,
+        mqtt: {
+            baseTopic: req.config.mqtt.baseTopic,
+            broker: req.config.mqtt.broker.ws
+        }
+    };
+    res.render("realtime", viewbag);
 });
 
 module.exports = router;

@@ -3,7 +3,10 @@ block content
     script(src=baseURL + "/js/mqtt.min.js")
     script(src=baseURL + "/js/moment.min.js")
     script.
-        var mqttAddress = "#{mqtt}";
+        var config = {
+            broker: "#{mqtt.broker}",
+            baseTopic: "#{mqtt.baseTopic}"
+        };
     link(rel="stylesheet", href=baseURL + "/css/realtime.css")
     script(src=baseURL + "/js/underling.js")
     script(src=baseURL + "/js/utilities.js")

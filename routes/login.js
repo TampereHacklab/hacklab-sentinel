@@ -6,7 +6,7 @@ var passport = require("passport");
 /* GET home page. */
 router.get("/", function(req, res, next) {
     var viewbag = {
-        baseURL: req.baseURL
+        baseURL: req.config.baseURL
     };
   res.render("login", viewbag);
 });
@@ -23,7 +23,7 @@ router.post('/local-login',
             id: req.user.id
         }
     }).then(function(user) {
-        res.redirect(req.baseURL + '/');
+        res.redirect(req.config.baseURL + '/');
     });
 
   });
@@ -31,12 +31,12 @@ router.post('/local-login',
 
 router.get("/logout", function(req, res) {
   req.logout();
-  res.redirect(req.baseURL + "/login");
+  res.redirect(req.config.baseURL + "/login");
 });
 
 router.post("/register", function(req, res, next) {
   var viewbag = {
-      baseURL: req.baseURL
+      baseURL: req.config.baseURL
   };
   var bcrypt = require("bcryptjs");
   if(req.body.password != req.body["password-repeat"]) {
@@ -54,7 +54,7 @@ router.post("/register", function(req, res, next) {
         email: req.body.email
       }).then(function(user) {
         console.log("new user created: " + user.username);
-        res.redirect(req.baseURL + "/login");
+        res.redirect(req.config.baseURL + "/login");
         return;
       });
     }

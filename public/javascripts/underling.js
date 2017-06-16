@@ -16,10 +16,14 @@ function Underling(options) {
         that.elements.header.html(this.name).css("color", utilities.isColorLight(that.color) ? "black" : "white");
         that.elements.content.html(this.state).css("color", utilities.isColorLight(that.color) ? "black" : "white");
         that.elements.timestamp.html(this.seen.format("HH:mm:ss DD.MM.YYYY"));
+        this.updateDuration();
     };
 
     this.updateDuration = function() {
         var duration = Math.round(moment().diff(that.seen) / 1000);
+        if(duration < 0) {
+            duration = 0;
+        }
         that.elements.duration.html(utilities.toDurationStr(duration));
     };
 
@@ -47,6 +51,6 @@ function Underling(options) {
 
     this.update(options);
     this.updateDuration();
-    setInterval(this.updateDuration, 1000);
+    setInterval(this.updateDuration, 30000);
     $(options.container).append(this.elements.container);
 }

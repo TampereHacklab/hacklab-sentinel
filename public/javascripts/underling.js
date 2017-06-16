@@ -8,7 +8,6 @@ function Underling(options) {
         that.color = options.color;
         if(typeof options.image != "undefined") {
             that.image = options.image;
-            console.log("GOT IMAGE");
         }
     };
 

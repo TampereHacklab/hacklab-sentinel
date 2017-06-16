@@ -3,8 +3,6 @@ var client = mqtt.connect(config.broker, {
     clientId: "sentinel_js_mqqt_client"
 });
 client.on("connect", function(connack) {
-    console.log("ON CONNECT " + new Date());
-    console.log(connack);
     if(connack.sessionPresent == false) {
         client.subscribe(config.baseTopic + "/tampere/realtime/status/+");
         client.publish(config.baseTopic + "/tampere/realtime/request/DC1");

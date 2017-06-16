@@ -1,1 +1,1 @@
-NODE_ENV=development nodemon npm start
+PORT=6068 npm --production=true start

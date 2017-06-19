@@ -1,3 +1,4 @@
+loader.show();
 var clients = {};
 var client = mqtt.connect(config.broker, {
     clientId: "sentinel_js_mqqt_client"
@@ -7,6 +8,7 @@ client.on("connect", function(connack) {
         client.subscribe(config.baseTopic + "/tampere/realtime/status/+");
         client.publish(config.baseTopic + "/tampere/realtime/request/DC1");
     }
+    loader.hide();
 
 });
 

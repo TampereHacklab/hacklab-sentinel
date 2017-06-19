@@ -1,7 +1,9 @@
 extend layout
 
 block content
-    div(class="container-fluid")
+    script(src=baseURL + "/js/croppie.min.js")
+    link(rel="stylesheet", href=baseURL + "/css/croppie.css")
+    div(class="container")
         form(action=baseURL + "/devices/create", method="POST")
             input(type="hidden", id="id", name="id", value=device.id)
             div(class="form-group")
@@ -14,7 +16,22 @@ block content
                 label(for="description") description:
                 input(type="text", class="form-control", name="description", id="description", value=device.description)
             div(class="form-group")
-                label(for="identifier") image:
-                input(type="text", class="form-control", name="image", id="image", value=device.image)
+                label(for="image") image:
+                img(src=device.image, id="device-image", style="display: block;")
+                input(type="hidden", name="image", value=device.image)
+                br
+                a(class="btn btn-default", id="upload-image", data-toggle="modal", data-target="#image-upload-modal") new image
 
             input(type="submit", class="btn btn-default", value="Save")
+    div(class="modal fade", id="image-upload-modal", role="dialog")
+        div(class="modal-dialog")
+            div(class="modal-content")
+                div(class="modal-header")
+                    button(type="button", class="close", data-dismiss="modal") &times;
+                div(class="modal-body")
+                    div(id="image-upload-area") 
+                    input(type="file", id="upload-image-button", value="Choose image", accept="image/*")
+                div(class="modal-footer")
+                    button(type="button", class="btn btn-default", data-dismiss="modal", id="cancel") cancel
+                    button(type="button", class="btn btn-primary", id="apply") apply
+    script(src=baseURL + "/js/devices.js")

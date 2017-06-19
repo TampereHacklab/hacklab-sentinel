@@ -22,7 +22,42 @@ router.get('/:user_id/destroy', function(req, res) {
 });
 */
 router.post("/create", function(req, res) {
-    res.json(req.body);
+    var device = req.body;
+
+    //This is old device
+    models.Device.findOrCreate({
+        where: {
+            id: device.id
+        },
+        defaults: {
+            name: device.name,
+            machineName: device.machineName,
+            description: device.description,
+            image: device.image
+        }
+
+    }).spread(function(mewDevice, created) {
+        console.log(created);
+        if(!created) {
+            models.Device.update({
+                name: device.name,
+                machineName: device.machineName,
+                description: device.description,
+                image: device.image
+            },
+            {
+                where: {
+                    id: device.id
+                }
+            }).then(function(updated) {
+                res.redirect("/devices");
+            });
+        }
+        else {
+            res.json(newDevice);
+        }
+    });
+
 });
 router.get('/edit/:id', function(req, res) {
     var viewbag = {

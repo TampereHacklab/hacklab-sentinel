@@ -11,6 +11,8 @@ html
     script.
         var baseURL = "#{baseURL}";
   body
+    div(class="loader")
+        img(src=baseURL + "/images/loader.gif")
     nav(class="navbar navbar-inverse")
         div(class="container-fluid")
             div(class="navbar-header")
@@ -45,5 +47,6 @@ html
                                 span(class="glyphicon glyphicon-log-in", style={"margin-right": "5px"})
                                 | login
 
-
+    script.
+        var loader = $(".loader");
     block content

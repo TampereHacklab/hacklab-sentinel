@@ -30,16 +30,19 @@ app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js")); /
 app.use("/js", express.static(__dirname + "/node_modules/jquery/dist")); // redirect JS jQuery
 app.use("/js", express.static(__dirname + "/node_modules/mqtt/dist")); // redirect JS jQuery
 app.use("/js", express.static(__dirname + "/node_modules/moment/min")); // redirect JS jQuery
+app.use("/js", express.static(__dirname + "/node_modules/croppie"));
 app.use("/js", express.static(__dirname + "/public/javascripts")); // redirect JS jQuery
 app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css")); // redirect CSS bootstrap
+app.use("/css", express.static(__dirname + "/node_modules/croppie"));
 app.use("/css", express.static(__dirname + "/public/stylesheets")); // redirect CSS bootstrap
 app.use("/fonts", express.static(__dirname + "/node_modules/bootstrap/dist/fonts"));
+app.use("/images", express.static(__dirname + "/public/images"));
 
 //uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 app.use(logger("dev"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb" , extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 

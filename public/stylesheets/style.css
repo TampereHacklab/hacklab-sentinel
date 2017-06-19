@@ -1,3 +1,20 @@
 .navbar {
     border-radius: 0px;
 }
+
+.loader {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+}
+
+.loader img {
+    display: block;
+    margin: auto;
+    margin-top: 100px;
+}

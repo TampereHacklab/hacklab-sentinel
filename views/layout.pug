@@ -8,6 +8,8 @@ html
     script(src=baseURL + "/js/bootstrap.min.js")
     link(rel="stylesheet", href=baseURL + "/css/style.css")
     script(src=baseURL + "/js/main.js")
+    script.
+        var baseURL = "#{baseURL}";
   body
     nav(class="navbar navbar-inverse")
         div(class="container-fluid")
@@ -21,6 +23,8 @@ html
                 ul(class="nav navbar-nav")
                     li
                         a(href=baseURL + "/realtime") realtime
+                    li
+                        a(href=baseURL + "/history") history
                     if user
                         li
                             a(href=baseURL + "/users") users

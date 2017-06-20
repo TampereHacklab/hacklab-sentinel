@@ -33,10 +33,6 @@ start.bat
 Then point your browser to
 [http://localhost:3000](http://localhost:3000)
 
-datasource.py in raspberry-pi can be used to input data into system. Paho MQTT client must be installed first.
-```
-python3 datasource.py DC1 0 low
-```
-Command above will send to broker message that datacollector 1(raspberry) input 0 is low, and server will receive that and determine what to do with that. inputs range from 0 to 7 and input can be low or high. 
+If using Mosquitto MQTT broker, make sure that version is at least 1.4.12. Currently Mosquitto MQTT broker version in Ubuntu repositories is 1.4.10 which cannot handle MQTT messages trough websockets fast enough.
 
 [https://nyarlathotep.dy.fi/sentinel/realtime](https://nyarlathotep.dy.fi/sentinel/realtime) should be accessible for testing.

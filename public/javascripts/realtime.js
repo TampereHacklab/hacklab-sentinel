@@ -1,8 +1,6 @@
 loader.show();
 var clients = {};
-var client = mqtt.connect(config.broker, {
-    clientId: "sentinel_js_mqqt_client"
-});
+var client = mqtt.connect(config.broker);
 client.on("connect", function(connack) {
     if(connack.sessionPresent == false) {
         client.subscribe(config.baseTopic + "/tampere/realtime/status/+");

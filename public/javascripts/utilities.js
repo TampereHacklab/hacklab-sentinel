@@ -7,7 +7,7 @@ var utilities = {
         // Output like "1:01" or "4:03:59" or "123:03:59"
         var ret = "";
         if (duration < 60) {
-            ret = "less than minute";
+            ret = "0 min";
         }
         else {
             if (hrs < 10) {

@@ -25,17 +25,21 @@ html
                 ul(class="nav navbar-nav")
                     li
                         a(href=baseURL + "/realtime") realtime
-                    li
-                        a(href=baseURL + "/history") history
+
                     if user
-                        li
-                            a(href=baseURL + "/users") users
-                    if user
-                        li
-                            a(href=baseURL + "/devices") devices
-                    if user
-                        li
-                            a(href=baseURL + "/data-collectors") data collectors
+                        li(class="dropdown")
+                            a(class="dropdown-toggle", data-toggle="dropdown", href="#") config
+                                span(class="caret")
+                            ul(class="dropdown-menu")
+                                li
+                                    a(href=baseURL + "/data-collectors") data collectors
+                                li
+                                    a(href=baseURL + "/devices") devices
+                                li
+                                    a(href=baseURL + "/states") states
+                                li
+                                    a(href=baseURL + "/users") users
+
                 ul(class="nav navbar-nav navbar-right")
                     li
                         if user

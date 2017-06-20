@@ -50,7 +50,7 @@ router.post("/create", function(req, res) {
                     id: device.id
                 }
             }).then(function(updated) {
-                res.redirect("/devices");
+                res.redirect(req.config.baseURL + "/devices");
             });
         }
         else {
@@ -61,7 +61,6 @@ router.post("/create", function(req, res) {
 });
 router.get('/edit/:id', function(req, res) {
     var viewbag = {
-        dataCollector: null,
         user: req.user,
         baseURL: req.config.baseURL
     }

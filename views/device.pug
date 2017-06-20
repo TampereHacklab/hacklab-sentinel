@@ -2,6 +2,7 @@ extend layout
 
 block content
     script(src=baseURL + "/js/croppie.min.js")
+    script(src=baseURL + "/js/exif.js")
     link(rel="stylesheet", href=baseURL + "/css/croppie.css")
     div(class="container")
         form(action=baseURL + "/devices/create", method="POST")
@@ -29,7 +30,7 @@ block content
                 div(class="modal-header")
                     button(type="button", class="close", data-dismiss="modal") &times;
                 div(class="modal-body")
-                    div(id="image-upload-area") 
+                    div(id="image-upload-area")
                     input(type="file", id="upload-image-button", value="Choose image", accept="image/*")
                 div(class="modal-footer")
                     button(type="button", class="btn btn-default", data-dismiss="modal", id="cancel") cancel

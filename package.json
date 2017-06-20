@@ -12,6 +12,7 @@
     "cookie-parser": "~1.4.3",
     "croppie": "^2.4.1",
     "debug": "~2.6.8",
+    "exif-js": "^2.2.1",
     "express": "~4.15.3",
     "express-session": "^1.15.3",
     "express-ws": "^3.0.0",

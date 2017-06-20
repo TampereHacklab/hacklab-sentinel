@@ -1,0 +1,24 @@
+extend layout
+
+block content
+    div(class="container")
+        table(class="table table-striped")
+            thead
+                tr
+                    th name
+                    th machine name
+                    th color
+                    th created
+                    th updated
+                    th actions
+            tbody
+                each s in states
+                    tr
+                        td= s.name
+                        td= s.machineName
+                        td
+                            div(style="background-color: " + s.color + "; height: 1em; width: 1em; border-radius: 0.5em;")
+                        td= s.created
+                        td= s.updated
+                        td
+                            a(class="btn btn-default", href=baseURL + "/states/edit/" + s.id) edit

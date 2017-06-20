@@ -1,0 +1,16 @@
+extend layout
+
+block content
+    div(class="container")
+        form(action=baseURL + "/states/create", method="POST")
+            input(type="hidden", id="id", name="id", value=state.id)
+            div(class="form-group")
+                label(for="name") name:
+                input(type="text", class="form-control", name="name", id="name", value=state.name)
+            div(class="form-group")
+                label(for="name") machine name:
+                input(type="text", class="form-control", name="machineName", id="machineName", value=state.machineName)
+            div(class="form-group")
+                label(for="description") color:
+                input(type="color", class="form-control", name="color", id="color", value=state.color)
+            input(type="submit", class="btn btn-default", value="Save")

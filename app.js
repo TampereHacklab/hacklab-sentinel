@@ -19,6 +19,7 @@ var login = require("./routes/login");
 var realtime = require("./routes/realtime");
 var dataCollectors = require("./routes/data-collector");
 var devices = require("./routes/device");
+var states = require("./routes/state");
 var app = express();
 
 // view engine setup
@@ -125,6 +126,7 @@ app.use("/users", users);
 app.use("/login", login);
 app.use("/data-collectors", dataCollectors);
 app.use("/devices", devices);
+app.use("/states", states);
 app.use("/realtime", realtime);
 
 // catch 404 and forward to error handler

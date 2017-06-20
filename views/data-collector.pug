@@ -1,7 +1,7 @@
 extend layout
 
 block content
-    div(class="container-fluid")
+    div(class="container")
         form(action=baseURL + "/data-collectors/create", method="POST")
             input(type="hidden", id="id", name="id", value=dataCollector.id)
             div(class="form-group")

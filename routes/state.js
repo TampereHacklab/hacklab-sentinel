@@ -2,26 +2,9 @@ var models  = require('../models');
 var express = require('express');
 var router  = express.Router();
 var moment = require("moment");
-/*
-router.post('/create', function(req, res) {
-  models.User.create({
-    username: req.body.username
-  }).then(function() {
-    res.redirect('/');
-  });
-});
+var security = require("../utilities/security");
 
-router.get('/:user_id/destroy', function(req, res) {
-  models.User.destroy({
-    where: {
-      id: req.params.user_id
-    }
-  }).then(function() {
-    res.redirect('/');
-  });
-});
-*/
-router.post("/create", function(req, res) {
+router.post("/create", security.ensureAuthenticated, function(req, res) {
     var state = req.body;
 
     //This is old device
@@ -56,7 +39,7 @@ router.post("/create", function(req, res) {
     });
 
 });
-router.get('/edit/:id', function(req, res) {
+router.get('/edit/:id', security.ensureAuthenticated, function(req, res) {
     var viewbag = {
         user: req.user,
         baseURL: req.config.baseURL
@@ -70,7 +53,8 @@ router.get('/edit/:id', function(req, res) {
         res.render("state", viewbag);
       });
     });
-router.get("/", function(req, res) {
+
+router.get("/", security.ensureAuthenticated, function(req, res) {
     var viewbag = {
         states: [],
         user: req.user,

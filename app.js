@@ -92,6 +92,15 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
+passport.isLoggedIn = function(req, res, next) {
+    if(req.isAuthenticated()) {
+        return next();
+    }
+    else {
+        res.redirect("/");
+    }
+
+};
 // Session-persisted message middleware
 app.use(function(req, res, next){
   var err = req.session.error,

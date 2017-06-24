@@ -2,29 +2,12 @@ var models  = require('../models');
 var express = require('express');
 var router  = express.Router();
 var moment = require("moment");
-/*
-router.post('/create', function(req, res) {
-  models.User.create({
-    username: req.body.username
-  }).then(function() {
-    res.redirect('/');
-  });
-});
+var security = require("../utilities/security");
 
-router.get('/:user_id/destroy', function(req, res) {
-  models.User.destroy({
-    where: {
-      id: req.params.user_id
-    }
-  }).then(function() {
-    res.redirect('/');
-  });
-});
-*/
-router.post("/create", function(req, res) {
+router.post("/create", security.ensureAuthenticated, function(req, res) {
     res.json(req.body);
 });
-router.get('/edit/:id', function(req, res) {
+router.get('/edit/:id', security.ensureAuthenticated, function(req, res) {
     var viewbag = {
         dataCollector: null,
         user: req.user,
@@ -66,7 +49,8 @@ router.get('/edit/:id', function(req, res) {
         });
       });
     });
-router.get("/", function(req, res) {
+
+router.get("/", security.ensureAuthenticated, function(req, res) {
     var viewbag = {
         dataCollectors: [],
         user: req.user,

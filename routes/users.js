@@ -2,8 +2,10 @@ var models  = require('../models');
 var express = require('express');
 var router  = express.Router();
 var moment = require("moment");
+var passport = require("passport");
+var security = require("../utilities/security");
 
-router.post('/create', function(req, res) {
+router.post('/create', security.ensureAuthenticated, function(req, res) {
   models.User.create({
     username: req.body.username
   }).then(function() {
@@ -11,7 +13,7 @@ router.post('/create', function(req, res) {
   });
 });
 
-router.get('/:user_id/destroy', function(req, res) {
+router.get('/:user_id/destroy', security.ensureAuthenticated, function(req, res) {
   models.User.destroy({
     where: {
       id: req.params.user_id
@@ -21,7 +23,7 @@ router.get('/:user_id/destroy', function(req, res) {
   });
 });
 
-router.get("/", function(req, res) {
+router.get("/", security.ensureAuthenticated, function(req, res) {
     var viewbag = {
         users: [],
         user: req.user,
